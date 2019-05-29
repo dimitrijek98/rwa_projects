@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
+import Navigation from './Components/Shared/Navigation';
+import LandingPage from './Components/Pages/LandingPage';
+import Footer from './Components/Shared/Footer';
+import SearchPage from './Components/Pages/SearchPage';
+
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Just to make some change to dev branch
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>  
+        <Navigation />
+          <Route exact path="/" render={() => (
+            <LandingPage />
+          )}/>
+          <Route exact path="/search" render={() => (
+            <SearchPage />
+          )}/>
+        <Footer />
+      </Router>
     </div>
   );
 }

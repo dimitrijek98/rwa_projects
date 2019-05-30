@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {getSummoner} from '../../actions/summonerAction';
 
-export default class SearchPage extends Component {
+
+class SearchPage extends Component {
     render() {
         return (
             <div>
@@ -9,3 +12,8 @@ export default class SearchPage extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+    summoner: state.summoner
+})
+
+export default connect(mapStateToProps, {getSummoner})(SearchPage)

@@ -1,12 +1,22 @@
-import {Actions, SET_SUMMONER, SetSummoner, SET_RANK, SetRank} from '../actions/types'
-import { SummonerInfo } from '../models/SummonerInfo';
+import {Actions, SET_SUMMONER, SetSummoner, SET_RANK, SetRank, SET_SUMMONERS_MATCHES, SetSummonersMatches} from '../actions/types'
 
-const initialState: SummonerInfo = {
-    summoner: {},
-    rank: ''
+import { Summoner } from '../models/Summoner';
+
+const initialState: Summoner = {
+    
+        profileIconId: 0,
+        name: '',
+        summonerLevel: 0,
+        accountId: '',
+        id: '',
+        rank: '',
+        matchList: [],
+        
+    
+    
 }
 
-export default function summonerReducer(state: SummonerInfo = initialState, action: Actions){
+export default function reducer(state: Summoner = initialState, action: Actions){
     switch(action.type){
         case SET_RANK:{
             const {rank} = action as SetRank
@@ -18,8 +28,14 @@ export default function summonerReducer(state: SummonerInfo = initialState, acti
         case SET_SUMMONER:{
             const {summoner} = action as SetSummoner;
             return {
+                ...summoner 
+            }
+        }
+        case SET_SUMMONERS_MATCHES:{
+            const { matchList } = action as SetSummonersMatches;
+            return {
                 ...state,
-                summoner
+                matchList
             }
         }
         default:

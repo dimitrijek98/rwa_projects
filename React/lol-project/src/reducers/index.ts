@@ -1,14 +1,15 @@
 import {combineReducers} from 'redux';
 import summonerReducer from './summonerReducer';
 import matchReducer from './matchReducer';
-import { SummonerInfo } from '../models/SummonerInfo';
+import { Summoner } from '../models/Summoner';
+import { Match } from '../models/Match';
 
 export interface RootState {
-    summonerInfo: SummonerInfo,
-    matches: object[]
+    Summoner: Summoner,
+    matches: Match[]
 }
 
 export const rootReducer = combineReducers({
-    summoner: summonerReducer,
-    marches: matchReducer
+    Summoner: summonerReducer,
+    matches: matchReducer
 })

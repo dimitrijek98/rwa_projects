@@ -6,7 +6,21 @@ import Navigation from './Components/Shared/Navigation';
 import LandingPage from './Components/Pages/LandingPage';
 import Footer from './Components/Shared/Footer';
 import SearchPage from './Components/Pages/SearchPage';
-import store from './store';
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from '@redux-saga/core';
+import { rootReducer } from './reducers';
+import { rootSaga } from './sagas/sagas';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { getSummoner } from './actions/summonerAction';
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+  applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSaga);
 
 const App: React.FC = () => {
   return (
@@ -20,6 +34,7 @@ const App: React.FC = () => {
             <Route exact path="/search" render={() => (
               <SearchPage />
             )}/>
+            
           <Footer />
         </Router>
       </Provider>

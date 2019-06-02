@@ -13,10 +13,12 @@
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-loader-spinner": "^2.3.0",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "react-svg-donut-chart": "^1.1.0",
     "redux-saga": "^1.0.2",
     "redux-saga-requests-axios": "^0.7.6",
     "typescript": "3.4.5"
@@ -41,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
   }
 }

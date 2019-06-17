@@ -1,0 +1,29 @@
+.landing{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.first{
+    background-color: transparent;
+    color: white;
+    height: 500px;
+    padding: 0 25%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.second{
+    background-color: white;
+    color: black;
+    height: 500px;
+    padding: 0 25%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

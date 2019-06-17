@@ -1,0 +1,14 @@
+.navbar{
+    background-color: transparent;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+h2{
+    color: white
+}
+
+.rounded{
+    corner-radius:50%;
+    
+    width: 100px
+}

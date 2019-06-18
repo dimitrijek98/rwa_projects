@@ -1,14 +1,78 @@
-<div class="landing">
-  <div class="first">
-    <h1>
-      Welcome to the best oneline store for consumer electronics. We garantee you lowest prices and the best shopping expirience.
-    </h1>
-    <button mat-raised-button>Learn more!</button>
-  </div>
-  <div class="second">
-      <h1>
-        Welcome to the best oneline store for consumer electronics. We garantee you lowest prices and the best shopping expirience.
-      </h1>
-      <button mat-raised-button>Learn more!</button>
+<div class="center ">
+    <div class="container first fixed-photo" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="6%">
+        <div fxFlex="50%" class="center text-center">
+            <h1 class="text-left">
+                Welcome to the best oneline store.
+            </h1>
+            <h3 class="text-left">
+                One stop place fore all your consumer electronics needs. We garantee you lowest prices and the best shopping expirience.
+            </h3>
+            <button mat-raised-button>Learn more!</button>
+        </div>
+        <div fxFlex="50%">
+            <!-- <img src='../../../assets/Images/Illustration.png'> -->
+        </div>
+    </div>
+    <div class="second">
+        <h1>
+            You are just few steps away from happines!
+        </h1>
+        <mat-vertical-stepper linear="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Enter your first name.</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="First name" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button color="accent" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Now your last name</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="Last name" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button color="accent" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fill out your email address</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="Email" formControlName="secondCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button color="accent" matStepperPrevious>Back</button>
+                        <button mat-button color="accent" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Enter password for the end</ng-template>
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="Password" formControlName="secondCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button color="accent" matStepperPrevious>Back</button>
+                        <button mat-button color="accent" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button color="accent">Register</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
+
     </div>
 </div>

@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatListModule} from '@angular/material/list';
@@ -5,7 +6,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-import { NgModule } from '@angular/core';
+
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { NgModule } from '@angular/core';
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule],
+    FormsModule,
+    ReactiveFormsModule],
   exports: [
     MatButtonModule, 
     MatCheckboxModule,
@@ -25,6 +27,7 @@ import { NgModule } from '@angular/core';
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule],
+    FormsModule,
+    ReactiveFormsModule],
 })
 export class MaterialModule { }

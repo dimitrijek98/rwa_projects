@@ -1,4 +1,4 @@
-<div class="center full-width">
+<div  class="center full-width">
     <div class="container first fixed-photo" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="6%">
         <div fxFlex="50%" class="center text-center">
             <h1 class="text-left">
@@ -14,7 +14,7 @@
             <!-- <img src='../../../assets/Images/Illustration.png'> -->
         </div>
     </div>
-    <div class="second">
+    <div *ngIf="isLoggedOut$ | async" class="second">
         <h1>
             You are just few steps away from happines!
         </h1>

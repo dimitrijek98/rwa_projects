@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatStepperModule
+    MatStepperModule,
+    MatChipsModule
   ],
   exports: [
     MatButtonModule,
@@ -38,7 +40,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatStepperModule
+    MatStepperModule,
+    MatChipsModule
   ],
 })
 export class MaterialModule { }

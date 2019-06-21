@@ -16,6 +16,16 @@
     align-items: center;
 }
 
+.alert{
+    background-color: #ff4081;
+    color: white;
+    text-align: center;
+    height: 30px;
+    padding: 4px;
+    width: 80%;
+    border-radius: 5px;
+}
+
 .fixed-photo {
     background-image: url("../../../assets/Images/desk.png");
     height: 300px;

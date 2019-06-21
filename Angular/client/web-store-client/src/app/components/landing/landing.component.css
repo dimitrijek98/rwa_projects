@@ -22,11 +22,11 @@
 
 .fixed-photo {
     background-image: url("../../../assets/Images/Illustration.png");
-    height: 700px;
+    height: 750px;
     background-attachment: fixed;
     background-position: right;
     background-repeat: no-repeat;
-    background-size: 40%;
+    background-size: 35%;
 }
 
 .second {

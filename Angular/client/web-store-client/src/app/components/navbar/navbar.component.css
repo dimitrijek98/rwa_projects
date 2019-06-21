@@ -3,9 +3,10 @@
     justify-content: space-between;
     padding: 0 10%;
 }
-h1, h2, h3, h4, h5{
+h1, h2, h3, h4, h5, h6{
     color: white
 }
 a{
-    margin: 0 10px
+    margin: 0 10px;
+    color: white
 }

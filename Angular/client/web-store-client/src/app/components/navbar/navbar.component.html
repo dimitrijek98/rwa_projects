@@ -1,6 +1,7 @@
 <mat-toolbar class="navbar">
     <h1>Web Store</h1>
     <div>
+
         <a mat-button routerLink="">
             <h4>Home</h4>
         </a>
@@ -10,9 +11,13 @@
         <a mat-button routerLink=".">
             <h4>About</h4>
         </a>
-    </div>
-    <div>
-        <a mat-flat-button routerLink="Login" color="accent">Log in</a>
-        <a mat-flat-button routerLink="Register">Register</a>
+
+        <span *ngIf="isLoggedOut$ | async">
+            <a mat-flat-button color="accent" routerLink="Register">Register</a>
+            <a mat-button routerLink="Login">Log in</a>
+        </span>
+
+        <a mat-flat-button color="primary" (click)='logout()' *ngIf="isLoggedIn$ | async">Logout</a>
+
     </div>
 </mat-toolbar>

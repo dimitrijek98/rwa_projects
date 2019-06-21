@@ -11,9 +11,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { rootReducer, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AuthGuard } from './services/auth.guard';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -30,8 +33,11 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    AuthGuard,
+    StoreModule.forRoot(rootReducer, { metaReducers }),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([AuthEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
 
   ],
   providers: [],

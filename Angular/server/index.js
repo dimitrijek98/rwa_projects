@@ -79,10 +79,6 @@ var Product = sequelize.define('product', {
         type: Sequelize.STRING,
         field: 'description'
     },
-    image: {
-        type: Sequelize.STRING,
-        field: 'image'
-    },
     createdAt: {
         type: Sequelize.DATE,
         field: 'createdAt'
@@ -171,7 +167,7 @@ app.post("/Register", async function (req, res) {
     let alredyThere = await findUser(req.body.email, req.body.password);
     console.log(alredyThere);
     if (alredyThere) {
-        res.json("exist");
+        res.json(null);
     } else {
         let user =
             await User.create({
@@ -182,12 +178,10 @@ app.post("/Register", async function (req, res) {
                 createdAt: new Date(),
                 updatedAt: new Date()
             });
-        if (!user) {
-            res.json(null);
-        } else {
-            res.header(200);
-            res.json(user.dataValues);
-        }
+
+        res.header(200);
+        res.json(user.dataValues);
+
     }
 
 })

@@ -23,8 +23,8 @@ export class UserService {
     return this.http.get<Product[]>(`${baseAPIUrl}AllProducts`);
   }
 
-  loginUser(user: User):Observable<any>{
-    return this.http.post(`${baseAPIUrl}Login`,JSON.stringify(user), httpOptions);
+  loginUser(email:string, password:string):Observable<any>{
+    return this.http.post(`${baseAPIUrl}Login`,JSON.stringify({email:email,password:password}), httpOptions);
   }
 
   registerUser(user: User):Observable<any>{

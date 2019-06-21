@@ -1,9 +1,9 @@
 <div class="first-line text-center text-white fixed-photo">
-    <h1>To been able to shop in our store, first you have to create yout account. Don't worry, account is on the house!</h1>
+    <h1>Login to your account before shopping!</h1>
 </div>
 
 <div class="container full-width">
-    <h1>Enter your account data.</h1>
+    <h1 style="color: black">Enter your account data.</h1>
     <form (ngSubmit)="userRegister()">
         <table class="full-width" cellspacing="2">
             <tr>
@@ -33,4 +33,7 @@
             <button [disabled]="!(firstName.valid && lastName.valid && email.valid && password.valid)" mat-raised-button type="submit" color="primary">Create Account</button>
         </div>
     </form>
+    <div *ngFor="let user of users">
+        <p>{{ user.name }}</p>
+    </div>
 </div>

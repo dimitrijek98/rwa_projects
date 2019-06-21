@@ -1,30 +1,42 @@
 const Sequelize = require('sequelize');
 const express = require('express');
 const app = express();
+var cors = require('cors');
 const config = require("./Config");
+const bodyParser = require('body-parser')
+
+app.use(
+    bodyParser.urlencoded({
+        extended: true
+    })
+)
+
+app.use(bodyParser.json())
+
+app.use(cors());
 
 
 
 var sequelize = new Sequelize(config.db_name, config.db_user, config.db_pass, {
-    host: 'localhost',
-    dialect: 'mysql',
-  
-    pool: {
-      max: 10,
-      min: 0,
-      idle: 10000
-    },
+        host: 'localhost',
+        dialect: 'mysql',
+
+        pool: {
+            max: 10,
+            min: 0,
+            idle: 10000
+        },
     }
 
 )
-var Card = sequelize.define('card',{
+var Card = sequelize.define('card', {
     id: {
         type: Sequelize.INTEGER,
         field: 'id',
         autoIncrement: true,
         primaryKey: true
     },
-    number:{
+    number: {
         type: Sequelize.STRING,
         field: 'number'
     },
@@ -35,13 +47,13 @@ var Card = sequelize.define('card',{
     money: {
         type: Sequelize.INTEGER,
         field: 'money',
-        
+
     },
-    createdAt:{
+    createdAt: {
         type: Sequelize.DATE,
         field: 'createdAt'
-        },
-    updatedAt:{
+    },
+    updatedAt: {
         type: Sequelize.DATE,
         field: 'updatedAt'
     }
@@ -49,32 +61,36 @@ var Card = sequelize.define('card',{
 })
 
 var Product = sequelize.define('product', {
-        id: {
-            type: Sequelize.INTEGER,
-            field: 'id',
-            autoIncrement: true,
-            primaryKey: true
-        },
-        name: {
-            type: Sequelize.STRING,
-            field: 'name'
-        },
-        price:{
-            type: Sequelize.FLOAT,
-            field: 'price'
-        },
-        description: {
-            type: Sequelize.STRING,
-            field: 'description'
-        },
-        createdAt:{
-            type: Sequelize.DATE,
-            field: 'createdAt'
-            },
-        updatedAt:{
-            type: Sequelize.DATE,
-            field: 'updatedAt'
-        }
+    id: {
+        type: Sequelize.INTEGER,
+        field: 'id',
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        field: 'name'
+    },
+    price: {
+        type: Sequelize.FLOAT,
+        field: 'price'
+    },
+    description: {
+        type: Sequelize.STRING,
+        field: 'description'
+    },
+    image: {
+        type: Sequelize.STRING,
+        field: 'image'
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        field: 'createdAt'
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        field: 'updatedAt'
+    }
 })
 
 var User = sequelize.define('user', {
@@ -83,27 +99,27 @@ var User = sequelize.define('user', {
         autoIncrement: true,
         primaryKey: true
     },
-    username: {
-      type: Sequelize.STRING,
-      field: 'username'
+    email: {
+        type: Sequelize.STRING,
+        field: 'email'
     },
     password: {
-      type: Sequelize.STRING,
-      field:'password'  
-    },
-    name: {
-      type: Sequelize.STRING,
-      field: 'name'
-    },
-    surname: {
         type: Sequelize.STRING,
-        field: 'surname'
+        field: 'password'
     },
-    createdAt:{
+    firstName: {
+        type: Sequelize.STRING,
+        field: 'firstName'
+    },
+    lastName: {
+        type: Sequelize.STRING,
+        field: 'lastName'
+    },
+    createdAt: {
         type: Sequelize.DATE,
         field: 'createdAt'
     },
-    updatedAt:{
+    updatedAt: {
         type: Sequelize.DATE,
         field: 'updatedAt'
     }
@@ -112,55 +128,78 @@ var User = sequelize.define('user', {
 sequelize
     .authenticate()
     .then(() => {
-      console.log('Connection has been established successfully.');
+        console.log('Connection has been established successfully.');
     })
     .catch(err => {
-      console.error('Unable to connect to the database');
+        console.error('Unable to connect to the database');
     });
 
-app.listen(3200, function() {
+app.listen(3200, function () {
     console.error("App listening on 3200");
 });
 
 app.use(express.static('./profileIcons'))
 
 
-app.get("/AllUsers", async function(req,res){  
-    let users = await GetAllUsers();
-    if(users){
-        res.json({success: true, data: users})
+app.get("/AllProducts", async function (req, res) {
+    let products = await Product.findAll();
+    if (products) {
+        let productsArray = await products.map(product => product.dataValues);
+        res.header(200);
+        res.json(productsArray);
+    } else {
+        res.json(null);
     }
-    res.json({success: false, data: users})
 });
-app.post("/Login", async function(req,res){
-    let user = await loginUser("neko","neko");
-    if(user){
-        res.json({success: true, data: user})
+
+app.post("/Login", async function (req, res) {
+    let user = await User.findOne({
+        where: {
+            email: req.body.email,
+            password: req.body.password
+        }
+    });
+    if (!user) {
+        res.json(null);
+    } else {
+        res.header(200);
+        res.json(user.dataValues);
     }
-    res.json({success: false, data: user})
+});
+app.post("/Register", async function (req, res) {
+
+    let alredyThere = await findUser(req.body.email, req.body.password);
+    console.log(alredyThere);
+    if (alredyThere) {
+        res.json("exist");
+    } else {
+        let user =
+            await User.create({
+                email: req.body.email,
+                password: req.body.password,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            });
+        if (!user) {
+            res.json(null);
+        } else {
+            res.header(200);
+            res.json(user.dataValues);
+        }
+    }
+
 })
-
-async function loginUser(username,password){
-    let user = await User.findOne({where: {username: username}});
-    if(user){
-        if(user.dataValues.password === password)
-            return user.dataValues;
-    }
+async function findUser(email, password) {
+    let alredyThere = await User.findOne({
+        where: {
+            email: email,
+            password: password
+        }
+    });
+    console.log(alredyThere)
+    if (!alredyThere)
+        return null;
+    return alredyThere.dataValues;
 }
-async function GetAllUsers(){
-    let users = await User.findAll({where: {username: 'neko'}});
-    if(users)
-    {
-        let usersData = await users.map(user =>user.dataValues);
-        console.log(usersData);
-        return usersData
-    }
-    return users
-}
-
-
-
-
-
-
-

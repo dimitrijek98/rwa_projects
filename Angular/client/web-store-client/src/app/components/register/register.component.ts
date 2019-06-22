@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { Product } from 'src/app/models/Product';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/store/reducers';
+import { Register } from 'src/app/store/actions/auth.actions';
+import { Observable } from 'rxjs';
+import { registerFail } from 'src/app/store/selectors/auth.selector';
 
 @Component({
   selector: 'app-register',
@@ -15,14 +19,14 @@ export class RegisterComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
+  registerFail$ : Observable<boolean>;
 
-  constructor(private userService: UserService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.userService.getAllProducts().subscribe(products => {
-      this.products = products;
-      console.log(products);
-    });
+    this.registerFail$ = this.store.pipe(
+      select(registerFail)
+    );
   }
 
   errorEmail() {
@@ -50,12 +54,7 @@ export class RegisterComponent implements OnInit {
       firstName: this.firstName.value,
       lastName: this.lastName.value
     }
-    this.userService.registerUser(user).subscribe(recivedUser => {
-      let logedInUser = recivedUser;
-      console.log(logedInUser);
-
-    }
-    )
+    this.store.dispatch(new Register(user));
   }
 }
 

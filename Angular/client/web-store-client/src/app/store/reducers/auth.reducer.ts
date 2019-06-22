@@ -2,13 +2,15 @@ import { User } from '../../models/User';
 import { AuthActionTypes, AuthActions } from '../actions/auth.actions';
 
 export interface AuthState {
-    isFailed: boolean,
+    registerFail: boolean,
+    loginFail: boolean,
     loggedIn: boolean,
     user: User
 }
 
 const initialAuthState: AuthState = {
-    isFailed: false,
+    registerFail: false,
+    loginFail: false,
     loggedIn: false,
     user: undefined
 }
@@ -18,7 +20,17 @@ export default function authReducer(state: AuthState = initialAuthState, action:
         case AuthActionTypes.LoginSuccessAction:
             {
                 return {
-                    isFailed:false,
+                    registerFail: false,
+                    loginFail: false,
+                    loggedIn: true,
+                    user: action.user
+                }
+            }
+        case AuthActionTypes.RegisterSuccessAction:
+            {
+                return {
+                    registerFail: false,
+                    loginFail: false,
                     loggedIn: true,
                     user: action.user
                 }
@@ -26,15 +38,26 @@ export default function authReducer(state: AuthState = initialAuthState, action:
         case AuthActionTypes.LoginFailAction:
             {
                 return {
-                    isFailed: true,
-                    loggedIn: true,
-                    user:undefined
+                    registerFail: false,
+                    loginFail: true,
+                    loggedIn: false,
+                    user: undefined
+                }
+            }
+        case AuthActionTypes.RegisterFailAction:
+            {
+                return {
+                    registerFail: true,
+                    loginFail: false,
+                    loggedIn: false,
+                    user: undefined
                 }
             }
         case AuthActionTypes.LogoutAction:
             {
                 return {
-                    isFailed: false,
+                    registerFail: false,
+                    loginFail: false,
                     loggedIn: false,
                     user: undefined
                 }

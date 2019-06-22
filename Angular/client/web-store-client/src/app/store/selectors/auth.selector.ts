@@ -14,5 +14,11 @@ export const isLoggedOut = createSelector(
 
 export const isLoginFail = createSelector(
     selectAuthState,
-    user => user.isFailed
+    user => user.loginFail
+);
+
+
+export const registerFail = createSelector(
+    selectAuthState,
+    user => user.registerFail
 );

@@ -1,10 +1,14 @@
 <div class="first-line text-center text-white fixed-photo">
-    <h1>Login to your account before shopping!</h1>
+    <h1>To been able to shop in our store, first you have to create yout account. Don't worry, account is on the house!
+    </h1>
 </div>
 
 <div class="container full-width">
     <h1 style="color: black">Enter your account data.</h1>
-    <form (ngSubmit)="userRegister()">
+    <form>
+        <div *ngIf="registerFail$ | async" class="center">
+            <h4 class="alert center">There is already an user registered with that email</h4>
+        </div>
         <table class="full-width" cellspacing="2">
             <tr>
                 <td>
@@ -30,7 +34,8 @@
             <mat-error *ngIf="password.invalid">{{errorPassword()}}</mat-error>
         </mat-form-field>
         <div class="to-left full-width">
-            <button [disabled]="!(firstName.valid && lastName.valid && email.valid && password.valid)" mat-raised-button type="submit" color="primary">Create Account</button>
+            <button [disabled]="!(firstName.valid && lastName.valid && email.valid && password.valid)" mat-raised-button
+                (click)="userRegister()" color="primary">Create Account</button>
         </div>
     </form>
     <div *ngFor="let user of users">

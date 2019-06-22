@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { AuthGuard } from './services/auth.guard';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
+import { ProductEffects } from './store/effects/product.effects';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { AuthEffects } from './store/effects/auth.effects';
     AuthGuard,
     StoreModule.forRoot(rootReducer, { metaReducers }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([AuthEffects, ProductEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
 
   ],

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseAPIUrl } from '../Config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
-import { Product } from '../models/Product';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,10 +17,6 @@ const httpOptions = {
 export class UserService {
 
   constructor(private http:HttpClient) { }
-
-  getAllProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(`${baseAPIUrl}AllProducts`);
-  }
 
   loginUser(email:string, password:string):Observable<any>{
     return this.http.post(`${baseAPIUrl}Login`,JSON.stringify({email:email,password:password}), httpOptions);

@@ -75,6 +75,10 @@ var Product = sequelize.define('product', {
         type: Sequelize.FLOAT,
         field: 'price'
     },
+    category: {
+        type: Sequelize.STRING,
+        field: 'category'
+    },
     description: {
         type: Sequelize.STRING,
         field: 'description'
@@ -139,14 +143,27 @@ app.use(express.static('./profileIcons'))
 
 app.get("/AllProducts", async function (req, res) {
     let products = await Product.findAll();
-    if (products) {
-        let productsArray = await products.map(product => product.dataValues);
-        res.header(200);
+    let productsArray = await products.map(product => product.dataValues);
+    res.header(200);
+    res.json(productsArray);
+
+});
+
+app.get('/Category', async function (req, res) {
+    let category = req.query.category;
+    console.log(category);
+    let response = await Product.findAll({
+        where: {
+            category: category
+        }
+    });
+    if (response) {
+        let productsArray = await response.map(product => product.dataValues);
         res.json(productsArray);
     } else {
         res.json(null);
     }
-});
+})
 
 app.post("/Login", async function (req, res) {
     let user = await User.findOne({

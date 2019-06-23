@@ -1,8 +1,5 @@
-<div fxLayout="row" class="container" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="start">
-  <div class="full-width space-around">
-    <button mat-flat-button color="accent" (click)="empty()">Empty Cart</button>
-    <button mat-flat-button color="primary" (click)="checkout()">Go to checkout</button>
-  </div>
+<div fxLayout="row" class="container" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
+
   <mat-card *ngFor="let product of products" class="product-card">
     <mat-card-header>
       <mat-card-title>{{product.name}}</mat-card-title>
@@ -19,5 +16,9 @@
     </mat-card-actions>
   </mat-card>
 
+  <div class="full-width space-around">
+    <button mat-flat-button color="accent" (click)="empty()">Empty Cart</button>
+    <button mat-flat-button color="primary" (click)="checkout()">Go to checkout</button>
+  </div>
 
 </div>

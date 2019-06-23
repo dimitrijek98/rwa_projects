@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   loginFail$ : Observable<boolean>;
 
-  constructor(private store: Store<AppState>,private userService:UserService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.loginFail$ = this.store.pipe(

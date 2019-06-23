@@ -8,8 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+
+
 
 
 @NgModule({
@@ -26,7 +32,12 @@ import {MatChipsModule} from '@angular/material/chips';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatStepperModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule
+    
   ],
   exports: [
     MatButtonModule,
@@ -41,7 +52,11 @@ import {MatChipsModule} from '@angular/material/chips';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatStepperModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule
   ],
 })
 export class MaterialModule { }

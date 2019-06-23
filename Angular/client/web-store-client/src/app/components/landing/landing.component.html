@@ -1,17 +1,14 @@
-<div  class="center full-width">
+<div  class="full-width">
     <div class="container first fixed-photo" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="6%">
         <div fxFlex="50%" class="center text-center">
-            <h1 class="text-left">
+            <h1>
                 Welcome to the best oneline store.
             </h1>
-            <h3 class="text-left">
+            <h2>
                 One stop place fore all your consumer electronics needs. We garantee you lowest prices and the best
                 shopping expirience.
-            </h3>
-            <button mat-raised-button>Learn more!</button>
-        </div>
-        <div fxFlex="50%">
-            <!-- <img src='../../../assets/Images/Illustration.png'> -->
+            </h2>
+            <button mat-raised-button routerLink="Store">Start Shopping!</button>
         </div>
     </div>
     <div *ngIf="isLoggedOut$ | async" class="second">

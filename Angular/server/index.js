@@ -138,7 +138,7 @@ app.listen(3200, function () {
     console.error("App listening on 3200");
 });
 
-app.use(express.static('./profileIcons'))
+app.use(express.static('./productPictures'))
 
 
 app.get("/AllProducts", async function (req, res) {
@@ -148,6 +148,7 @@ app.get("/AllProducts", async function (req, res) {
     res.json(productsArray);
 
 });
+
 
 app.get('/Category', async function (req, res) {
     let category = req.query.category;
@@ -162,6 +163,37 @@ app.get('/Category', async function (req, res) {
         res.json(productsArray);
     } else {
         res.json(null);
+    }
+})
+
+app.put('/Pay', async function (req, res) {
+    console.log(req.body);
+    let card = req.body;
+    let cardFound = await Card.findOne({
+        where: {
+            number: card.number,
+            cvv: card.cvv
+        }
+    });
+    if (!cardFound) {
+        res.json(null);
+    } else {
+        if (card.money < cardFound.dataValues.money) {
+            let payment = await Card.update({
+                money: cardFound.dataValues.money - card.money
+            }, {
+                returning: true,
+                where: {
+                    number: card.number,
+                    cvv: card.cvv
+                }
+            })
+            res.header(200);
+            res.json(payment);
+        }
+        else{
+            res.json(null);
+        }
     }
 })
 

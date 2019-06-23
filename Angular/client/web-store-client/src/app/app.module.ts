@@ -18,6 +18,16 @@ import { AuthGuard } from './services/auth.guard';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { ProductEffects } from './store/effects/product.effects';
+import { GridProductComponent } from './components/grid-product/grid-product.component';
+import { ProductService } from './services/product.service';
+import { UserService } from './services/user.service';
+import { CartComponent } from './components/cart/cart.component';
+import { CartGridComponent } from './components/cart-grid/cart-grid.component';
+import { CartEffects } from './store/effects/cart.effects';
+import { CardEffects } from './store/effects/card.effects';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +36,13 @@ import { ProductEffects } from './store/effects/product.effects';
     LandingComponent,
     LoginComponent,
     RegisterComponent,
-    AllProductsComponent
+    AllProductsComponent,
+    GridProductComponent,
+    CartComponent,
+    CartGridComponent,
+    CheckoutComponent,
+    PaymentSuccessComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,11 +53,11 @@ import { ProductEffects } from './store/effects/product.effects';
     AuthGuard,
     StoreModule.forRoot(rootReducer, { metaReducers }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([AuthEffects, ProductEffects]),
+    EffectsModule.forFeature([AuthEffects, ProductEffects,CartEffects,CardEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
 
   ],
-  providers: [],
+  providers: [ProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

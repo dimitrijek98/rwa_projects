@@ -5,6 +5,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { AuthGuard } from './services/auth.guard';
+import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 
 const routes: Routes = [
   {
@@ -18,6 +21,18 @@ const routes: Routes = [
   {
     path: 'Register',
     component: RegisterComponent
+  },
+  {
+    path: 'Cart',
+    component: CartComponent
+  },
+  {
+    path: 'Checkout',
+    component: CheckoutComponent
+  },
+  {
+    path: 'PaymentSuccess',
+    component: PaymentSuccessComponent
   },
   {
     path: 'Store',

@@ -5,7 +5,7 @@ import { AppState } from 'src/app/store/reducers';
 import { Logout } from 'src/app/store/actions/auth.actions';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { isLoggedIn, isLoggedOut } from 'src/app/store/selectors/auth.selector';
+import { isLoggedIn, isLoggedOut, userName } from 'src/app/store/selectors/auth.selector';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
+  userName$: Observable<string>;
 
   constructor(private router: Router, private store: Store<AppState>) { }
 
@@ -26,6 +27,9 @@ export class NavbarComponent implements OnInit {
     this.isLoggedOut$ = this.store.pipe(
       select(isLoggedOut)
     );
+    this.userName$ = this.store.pipe(
+      select(userName)
+    )
   }
 
   logout(){

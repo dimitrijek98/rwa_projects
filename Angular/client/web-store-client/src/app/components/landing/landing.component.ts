@@ -4,6 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Observable } from 'rxjs';
 import { isLoggedIn, isLoggedOut } from 'src/app/store/selectors/auth.selector';
+import { Register } from 'src/app/store/actions/auth.actions';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-landing',
@@ -44,8 +46,18 @@ export class LandingComponent implements OnInit {
   }
   
   userRegister(){
-    let user = this._formBuilder.group;
-    //console.log(this.firstNameFormGroup.value.firstNameCtrl, this.lastNameFormGroup.value.lastNameCtrl, this.emailFormGroup.value.emailCtrl, this.passwordFormGroup.value.passwordCtrl)
+    let firstName = this.firstNameFormGroup.value.firstNameCtrl;
+    let lastName = this.lastNameFormGroup.value.lastNameCtrl;
+    let password = this.passwordFormGroup.value.passwordCtrl;
+    let email = this.emailFormGroup.value.emailCtrl;
+    let user: User ={
+      firstName,
+      lastName,
+      email,
+      password
+    }
+    this.store.dispatch(new Register(user))
+    console.log(this.firstNameFormGroup.value.firstNameCtrl, this.lastNameFormGroup.value.lastNameCtrl, this.emailFormGroup.value.emailCtrl, this.passwordFormGroup.value.passwordCtrl)
   }
 
 }

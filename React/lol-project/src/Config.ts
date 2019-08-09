@@ -1,1 +1,1 @@
-export const API_KEY = "RGAPI-4ba120ac-5fd5-497b-9b17-670affa547cb";
+export const baseURL = "http://localhost:3200";

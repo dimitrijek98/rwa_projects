@@ -10,23 +10,22 @@ import { addMatches } from '../actions/matchAction';
 
 function* getSummoner(action :GetSummoner) {
   
-  const summoner = yield call(fetchSummoner, action.summonerName, action.region);
-  const rank = yield call(fetchSummonerRank, summoner.id, action.region);
-  const matches = yield call(fetchSummonersMatches, summoner.accountId, action.region);  
-  
-  let matchesList: number[] = matches.matches.map((match: { gameId: number; }) => match.gameId);
-  summoner.rank = rank[0]?rank[0].tier:"Unranked";
-  summoner.matchList = matchesList;
+  const summonerResponse = yield call(fetchSummoner, action.summonerName, action.region);
+  const rankResponse = yield call(fetchSummonerRank, summonerResponse.summoner.id, action.region);
+  const matchesResponse = yield call(fetchSummonersMatches, summonerResponse.summoner.accountId, action.region);
+  console.log(matchesResponse);
+  let matchesList: number[] = matchesResponse.matches.matches.map((match: { gameId: number; }) => match.gameId);
 
-  yield put(setSummoner(summoner));
-    
-
+  summonerResponse.summoner.rank = rankResponse.rank;
+  summonerResponse.summoner.matchList = matchesList;
+  yield put(setSummoner(summonerResponse.summoner));
   
 }
 
 function* getAllMatches(action: GetAllMatches){
   const allMatches = yield all(action.matchList.map((match:number) =>call(fetchMatch,match,action.region)));
-  yield all(allMatches.map((match:Match) => put(addMatches(match))));
+  console.log(allMatches);
+  yield all(allMatches.map((match:{error:string,match:Match}) => put(addMatches(match.match))));
 }
 
 

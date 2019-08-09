@@ -9,6 +9,7 @@ interface Props{
     user: Summoner;
 }
 export default class MatchI extends Component<Props> {
+
     state = {
         partId : 0,
         champData: { id:'', url:''},
@@ -17,7 +18,8 @@ export default class MatchI extends Component<Props> {
       }
     
       componentDidMount(){
-        if(this.props.match && this.props.user){
+      console.log(this.props.match.participantIdentities);
+        if(this.props.match.participantIdentities && this.props.user){
           this.props.match.participantIdentities.map(participant =>{
             if(participant.player.accountId === this.props.user.accountId)
               this.setState({partId: participant.participantId-1});

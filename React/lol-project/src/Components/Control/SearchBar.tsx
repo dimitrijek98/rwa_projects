@@ -38,8 +38,8 @@ class SearchBar extends Component<Props,State> {
       }
       render() {
         return (
-          <React.Fragment>
-            <div className="row"style={{marginTop: '10px'}}>
+          <div >
+            <div className="row" style={{marginTop: '10px'}}>
               <div className="col-md-12" >
                 <h2 className="text-primary">Enter Summoner name to get stats</h2>
               </div> 
@@ -88,7 +88,7 @@ class SearchBar extends Component<Props,State> {
               </div>
               
         
-          </React.Fragment>
+          </div>
           
             
       

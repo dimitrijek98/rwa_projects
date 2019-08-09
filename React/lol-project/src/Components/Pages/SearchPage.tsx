@@ -34,7 +34,7 @@ class SearchPage extends Component<Props,State> {
     
     render() {
         return (
-            <div className="container">
+            <div className="container" style={{minHeight: '70vh'}}>
                 <SearchBar region={this.setRegion}/> 
                 <div className="row my-2">
                     <div className="col-md-4">

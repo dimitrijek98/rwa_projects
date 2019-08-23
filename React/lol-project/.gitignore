@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 /src/Images/profileIcons
+RWA LOL server/node_modules
+RWA LOL server/profileIcons
 /.pnp
 .pnp.js
 

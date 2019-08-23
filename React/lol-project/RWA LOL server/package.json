@@ -1,0 +1,23 @@
+{
+  "name": "lol-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^0.18.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "image-downloader": "^3.4.2",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.18.10",
+    "request": "^2.88.0",
+    "request-progress": "^3.0.0",
+    "sequelize": "^5.2.12"
+  }
+}

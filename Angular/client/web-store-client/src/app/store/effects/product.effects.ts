@@ -25,7 +25,7 @@ export class ProductEffects {
     filter(([actions, allProductsLoaded]) => !allProductsLoaded),
     mergeMap(action => this.productService.getAllProducts()),
     map(products => new LoadAllProducts(products))
-  )
+  );
   constructor(private actions$: Actions, private productService: ProductService, private store: Store<AppState>) { }
 
 }

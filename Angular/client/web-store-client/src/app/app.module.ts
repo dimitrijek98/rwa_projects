@@ -53,7 +53,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AuthGuard,
     StoreModule.forRoot(rootReducer, { metaReducers }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([AuthEffects, ProductEffects,CartEffects,CardEffects]),
+    EffectsModule.forFeature([AuthEffects, ProductEffects, CartEffects, CardEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
 
   ],

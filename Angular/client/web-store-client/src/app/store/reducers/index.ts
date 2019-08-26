@@ -13,17 +13,17 @@ import cardReducer, { CardState } from './card.reducer';
 
 
 export interface AppState {
-  auth: AuthState,
-  products: ProductsState,
-  cart: CartState,
-  card: CardState
+  auth: AuthState;
+  products: ProductsState;
+  cart: CartState;
+  card: CardState;
 }
 
-export const rootReducer:ActionReducerMap<AppState> = {
+export const rootReducer: ActionReducerMap<AppState> = {
   auth: authReducer,
   products: productsReducers,
   cart: cartReducers,
   card: cardReducer,
-}
+};
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];

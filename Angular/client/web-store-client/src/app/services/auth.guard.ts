@@ -14,16 +14,13 @@ export class AuthGuard implements CanActivate {
 
     constructor(private store: State<AppState>, private router: Router) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        
         return this.store.pipe(
             select(isLoggedIn),
             tap(loggedIn => {
-                if(!loggedIn){
+                if (!loggedIn) {
                     this.router.navigateByUrl('Login');
                 }
             })
-        )
-
+        );
     }
-
 }

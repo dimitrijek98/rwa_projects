@@ -5,9 +5,6 @@ import { tap, map, mergeMap, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { defer, of } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import { registerLocaleData } from '@angular/common';
-
-
 
 @Injectable()
 export class AuthEffects {
@@ -16,12 +13,11 @@ export class AuthEffects {
   init$ = defer(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
-      return of(new LoginSuccess(JSON.parse(userData)))
+      return of(new LoginSuccess(JSON.parse(userData)));
+    } else {
+      return of(new Logout());
     }
-    else {
-      return of(new Logout())
-    }
-  })
+  });
 
   @Effect()
   login$ = this.actions$.pipe(
@@ -32,21 +28,20 @@ export class AuthEffects {
     map(user => {
       if (user) {
         return new LoginSuccess(user);
-      }
-      else {
-        return new LoginFail()
+      } else {
+        return new LoginFail();
       }
     })
-  )
+  );
 
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions$.pipe(
     ofType<LoginSuccess>(AuthActionTypes.LoginSuccessAction),
     tap((action) => {
-      localStorage.setItem('user', JSON.stringify(action.user))
+      localStorage.setItem('user', JSON.stringify(action.user));
       this.router.navigateByUrl('');
     })
-  )
+  );
 
   @Effect()
   register$ = this.actions$.pipe(
@@ -58,22 +53,20 @@ export class AuthEffects {
       if (user) {
         console.log(user);
         return new RegisterSuccess(user);
-      }
-      else {
-        return new RegisterFail()
+      } else {
+        return new RegisterFail();
       }
     })
-  )
+  );
 
-  @Effect({dispatch:false})
+  @Effect({dispatch: false})
   registerSuccess$ = this.actions$.pipe(
     ofType<RegisterSuccess>(AuthActionTypes.RegisterSuccessAction),
     tap((action) => {
-      console.log(action)
-      localStorage.setItem('user', JSON.stringify(action.user))
+      localStorage.setItem('user', JSON.stringify(action.user));
       this.router.navigateByUrl('');
     })
-  )
+  );
 
   @Effect({ dispatch: false })
   logaout$ = this.actions$.pipe(
@@ -82,7 +75,7 @@ export class AuthEffects {
       localStorage.removeItem('user');
       this.router.navigateByUrl('');
     })
-  )
+  );
 
   constructor(private actions$: Actions, private router: Router, private userService: UserService) { }
 

@@ -4,7 +4,6 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Logout } from 'src/app/store/actions/auth.actions';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { isLoggedIn, isLoggedOut, userName } from 'src/app/store/selectors/auth.selector';
 import { EmptyCart } from 'src/app/store/actions/cart.actions';
 
@@ -30,10 +29,10 @@ export class NavbarComponent implements OnInit {
     );
     this.userName$ = this.store.pipe(
       select(userName)
-    )
+    );
   }
 
-  logout(){
+  logout() {
     this.store.dispatch(new Logout());
     this.store.dispatch(new EmptyCart());
   }

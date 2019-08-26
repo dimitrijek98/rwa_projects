@@ -3,7 +3,7 @@ import { Product } from 'src/app/models/Product';
 
 export enum CartActionTypes {
   AddProduct = '[Store] Add Product',
-  AddManyToCart = "[Initialization] Add Many To Cart",
+  AddManyToCart = '[Initialization] Add Many To Cart',
   RemoveProduct = '[Cart] Remove Product',
   EmptyCart = '[Cart] Empty cart',
 }

@@ -9,23 +9,23 @@ const httpOptions = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllProducts():Observable<Product[]>{
+  getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${baseAPIUrl}AllProducts`);
   }
 
-  getCategory(category: string):Observable<Product[]>{
-    return this.http.get<Product[]>(`${baseAPIUrl}Category`,{
-      headers:httpOptions.headers,
-      params:{category}
+  getCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${baseAPIUrl}Category`, {
+      headers: httpOptions.headers,
+      params: {category}
     });
   }
 

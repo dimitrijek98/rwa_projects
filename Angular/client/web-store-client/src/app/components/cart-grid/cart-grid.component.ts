@@ -17,19 +17,16 @@ export class CartGridComponent implements OnInit {
 
   constructor(private store: Store<AppState>, private router: Router) { }
 
-  ngOnInit() {
-    console.log(this.products)
-
-  }
+  ngOnInit() {  }
 
   removeProduct(product: Product) {
-    this.store.dispatch(new RemoveProduct(product.id))
+    this.store.dispatch(new RemoveProduct(product.id));
   }
-  empty(){
+  empty() {
     this.store.dispatch(new EmptyCart());
   }
-  checkout(){
-    this.router.navigateByUrl("Checkout")
+  checkout() {
+    this.router.navigateByUrl('Checkout');
   }
 
 }

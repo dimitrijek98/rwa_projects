@@ -17,6 +17,6 @@ export class PaymentSuccessComponent implements OnInit {
     this.store.dispatch(new EmptyCart());
   }
   goBackToStore(){
-    this.router.navigateByUrl("Store");
+    this.router.navigateByUrl('Store');
   }
 }

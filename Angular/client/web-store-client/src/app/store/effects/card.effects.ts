@@ -4,10 +4,6 @@ import { Pay, CardActionTypes, PaymentSuccess, PaymentFail } from '../actions/ca
 import { mergeMap, map, tap } from 'rxjs/operators';
 import { CardService } from 'src/app/services/card.service';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
-import { EmptyCart } from '../actions/cart.actions';
-
-
 
 @Injectable()
 export class CardEffects {
@@ -22,20 +18,19 @@ export class CardEffects {
       console.log(payment);
       if (payment) {
         return new PaymentSuccess();
-      }
-      else {
-         return new PaymentFail()
+      } else {
+         return new PaymentFail();
       }
     })
-  )
+  );
 
-  @Effect({dispatch:false})
+  @Effect({dispatch: false})
   paySuccess$ = this.actions$.pipe(
     ofType<PaymentSuccess>(CardActionTypes.PaymentSuccess),
     tap(() => {
       this.router.navigateByUrl('PaymentSuccess');
     })
-  )
+  );
 
   constructor(private actions$: Actions, private cardService: CardService, private router: Router) {}
 

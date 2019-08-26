@@ -13,7 +13,7 @@ import { Product } from 'src/app/models/Product';
 })
 export class AllProductsComponent implements OnInit {
 
-  public products$: Observable<Product[]>
+  public products$: Observable<Product[]>;
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
@@ -21,7 +21,6 @@ export class AllProductsComponent implements OnInit {
     this.products$ = this.store.pipe(
       select(selectAllProducts)
     );
-    console.log(this.products$)
   }
 
 }

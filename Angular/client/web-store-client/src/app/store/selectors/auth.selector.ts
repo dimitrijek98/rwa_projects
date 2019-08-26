@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { AuthState } from '../reducers/auth.reducer';
 
-export const selectAuthState = createFeatureSelector<AuthState>("auth")
+export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
 export const isLoggedIn = createSelector(
     selectAuthState,
@@ -20,7 +20,7 @@ export const isLoginFail = createSelector(
 
 export const userName = createSelector(
     selectAuthState,
-    user => user.user?user.user.firstName:null
+    user => user.user ? user.user.firstName : null
 );
 
 export const registerFail = createSelector(

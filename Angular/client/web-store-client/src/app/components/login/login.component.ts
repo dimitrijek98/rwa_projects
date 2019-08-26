@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/User';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Login } from 'src/app/store/actions/auth.actions';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { isLoginFail } from 'src/app/store/selectors/auth.selector';
 
@@ -19,7 +15,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
-  loginFail$ : Observable<boolean>;
+  loginFail$: Observable<boolean>;
 
   constructor(private store: Store<AppState>) { }
 
@@ -39,9 +35,9 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin() {
-    let email = this.email.value;
-    let password = this.password.value;
-    console.log(email,password);
-    this.store.dispatch(new Login(email,password));
+    const email = this.email.value;
+    const password = this.password.value;
+    console.log(email, password);
+    this.store.dispatch(new Login(email, password));
   }
 }

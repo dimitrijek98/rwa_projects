@@ -7,19 +7,14 @@ export interface CardState {
 
 const initialCardState: CardState = {
     paymentFail: false
-}
+};
 
 export default function cardReducer(state: CardState = initialCardState, action: CardActions): CardState {
     switch (action.type) {
         case CardActionTypes.PaymentFail: {
             return{
-                paymentFail:true
-            }
-        }
-        case CardActionTypes.PaymentFail: {
-            return{
-                paymentFail:false
-            }
+                paymentFail: false
+            };
         }
         default:
             return state;

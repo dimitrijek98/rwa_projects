@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
@@ -16,12 +16,10 @@ export class GridProductComponent implements OnInit {
 
   constructor(private store: Store<AppState>) { }
 
-  ngOnInit() {
-    console.log(this.products)
-  }
+  ngOnInit() {}
 
- addProductToCart(product:Product){
-   this.store.dispatch(new AddProduct(product))
+ addProductToCart(product: Product) {
+   this.store.dispatch(new AddProduct(product));
  }
 
 }

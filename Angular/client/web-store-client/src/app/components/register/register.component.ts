@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
-  registerFail$ : Observable<boolean>;
+  registerFail$: Observable<boolean>;
 
   constructor(private store: Store<AppState>) { }
 
@@ -48,12 +48,12 @@ export class RegisterComponent implements OnInit {
 
   userRegister() {
     console.log(this.email.value, this.password.value, this.firstName.value, this.lastName.value);
-    let user: User = {
+    const user: User = {
       email: this.email.value,
       password: this.password.value,
       firstName: this.firstName.value,
       lastName: this.lastName.value
-    }
+    };
     this.store.dispatch(new Register(user));
   }
 }

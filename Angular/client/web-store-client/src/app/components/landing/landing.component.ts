@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Observable } from 'rxjs';
@@ -17,8 +17,6 @@ export class LandingComponent implements OnInit {
   lastNameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
   passwordFormGroup: FormGroup;
-
-  
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
@@ -32,7 +30,7 @@ export class LandingComponent implements OnInit {
       lastNameCtrl: ['', Validators.required]
     });
     this.emailFormGroup = this._formBuilder.group({
-      emailCtrl: ['',Validators.compose([Validators.required, Validators.email])]
+      emailCtrl: ['', Validators.compose([Validators.required, Validators.email])]
     });
     this.passwordFormGroup = this._formBuilder.group({
       passwordCtrl: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
@@ -44,20 +42,18 @@ export class LandingComponent implements OnInit {
       select(isLoggedOut)
     );
   }
-  
-  userRegister(){
-    let firstName = this.firstNameFormGroup.value.firstNameCtrl;
-    let lastName = this.lastNameFormGroup.value.lastNameCtrl;
-    let password = this.passwordFormGroup.value.passwordCtrl;
-    let email = this.emailFormGroup.value.emailCtrl;
-    let user: User ={
+  userRegister() {
+    const firstName = this.firstNameFormGroup.value.firstNameCtrl;
+    const lastName = this.lastNameFormGroup.value.lastNameCtrl;
+    const password = this.passwordFormGroup.value.passwordCtrl;
+    const email = this.emailFormGroup.value.emailCtrl;
+    const user: User = {
       firstName,
       lastName,
       email,
       password
-    }
-    this.store.dispatch(new Register(user))
-    console.log(this.firstNameFormGroup.value.firstNameCtrl, this.lastNameFormGroup.value.lastNameCtrl, this.emailFormGroup.value.emailCtrl, this.passwordFormGroup.value.passwordCtrl)
+    };
+    this.store.dispatch(new Register(user));
   }
 
 }

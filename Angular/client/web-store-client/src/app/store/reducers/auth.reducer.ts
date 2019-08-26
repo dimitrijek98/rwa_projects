@@ -2,10 +2,10 @@ import { User } from '../../models/User';
 import { AuthActionTypes, AuthActions } from '../actions/auth.actions';
 
 export interface AuthState {
-    registerFail: boolean,
-    loginFail: boolean,
-    loggedIn: boolean,
-    user: User
+    registerFail: boolean;
+    loginFail: boolean;
+    loggedIn: boolean;
+    user: User;
 }
 
 const initialAuthState: AuthState = {
@@ -13,7 +13,7 @@ const initialAuthState: AuthState = {
     loginFail: false,
     loggedIn: false,
     user: undefined
-}
+};
 
 export default function authReducer(state: AuthState = initialAuthState, action: AuthActions): AuthState {
     switch (action.type) {
@@ -24,43 +24,39 @@ export default function authReducer(state: AuthState = initialAuthState, action:
                     loginFail: false,
                     loggedIn: true,
                     user: action.user
-                }
+                };
             }
-        case AuthActionTypes.RegisterSuccessAction:
-            {
+        case AuthActionTypes.RegisterSuccessAction: {
                 return {
                     registerFail: false,
                     loginFail: false,
                     loggedIn: true,
                     user: action.user
-                }
+                };
             }
-        case AuthActionTypes.LoginFailAction:
-            {
+        case AuthActionTypes.LoginFailAction: {
                 return {
                     registerFail: false,
                     loginFail: true,
                     loggedIn: false,
                     user: undefined
-                }
+                };
             }
-        case AuthActionTypes.RegisterFailAction:
-            {
+        case AuthActionTypes.RegisterFailAction: {
                 return {
                     registerFail: true,
                     loginFail: false,
                     loggedIn: false,
                     user: undefined
-                }
+                };
             }
-        case AuthActionTypes.LogoutAction:
-            {
+        case AuthActionTypes.LogoutAction: {
                 return {
                     registerFail: false,
                     loginFail: false,
                     loggedIn: false,
                     user: undefined
-                }
+                };
             }
         default:
             return state;

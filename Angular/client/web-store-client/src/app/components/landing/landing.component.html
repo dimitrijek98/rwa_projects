@@ -6,14 +6,14 @@
             </h1>
             <h2>
                 One stop place fore all your consumer electronics needs. We garantee you lowest prices and the best
-                shopping expirience.
+                shopping experience.
             </h2>
             <button mat-raised-button routerLink="Store">Start Shopping!</button>
         </div>
     </div>
     <div *ngIf="isLoggedOut$ | async" class="second">
         <h1>
-            You are just few steps away from happines!
+            You are just few steps away from happiness!
         </h1>
         <mat-vertical-stepper linear="true" #stepper>
             <mat-step [stepControl]="firstNameFormGroup">

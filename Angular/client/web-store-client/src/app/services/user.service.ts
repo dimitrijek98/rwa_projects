@@ -9,20 +9,20 @@ const httpOptions = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  loginUser(email:string, password:string):Observable<any>{
-    return this.http.post(`${baseAPIUrl}Login`,JSON.stringify({email:email,password:password}), httpOptions);
+  loginUser(email: string, password: string): Observable<any> {
+    return this.http.post(`${baseAPIUrl}Login`, JSON.stringify({ email, password}), httpOptions);
   }
 
-  registerUser(user: User):Observable<any>{
-    return this.http.post(`${baseAPIUrl}Register`,JSON.stringify(user), httpOptions);
+  registerUser(user: User): Observable<any> {
+    return this.http.post(`${baseAPIUrl}Register`, JSON.stringify(user), httpOptions);
   }
 }

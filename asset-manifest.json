@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/rwa/static/css/main.d860a3ac.chunk.css",
+    "main.js": "/rwa/static/js/main.76abb348.chunk.js",
+    "main.js.map": "/rwa/static/js/main.76abb348.chunk.js.map",
+    "runtime~main.js": "/rwa/static/js/runtime~main.df639493.js",
+    "runtime~main.js.map": "/rwa/static/js/runtime~main.df639493.js.map",
+    "static/js/2.68e696ec.chunk.js": "/rwa/static/js/2.68e696ec.chunk.js",
+    "static/js/2.68e696ec.chunk.js.map": "/rwa/static/js/2.68e696ec.chunk.js.map",
+    "index.html": "/rwa/index.html",
+    "precache-manifest.094e5e3f0a3fe6cdd9039406c2ef9520.js": "/rwa/precache-manifest.094e5e3f0a3fe6cdd9039406c2ef9520.js",
+    "service-worker.js": "/rwa/service-worker.js",
+    "static/css/main.d860a3ac.chunk.css.map": "/rwa/static/css/main.d860a3ac.chunk.css.map",
+    "static/media/bootstrap.css": "/rwa/static/media/Anivia_5.d5d4c086.jpg",
+    "static/media/lolicon.png": "/rwa/static/media/lolicon.cfe94614.png"
+  }
+}

@@ -17,7 +17,7 @@
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-svg-donut-chart": "^1.1.0",
     "redux-saga": "^1.0.2",
     "redux-saga-requests-axios": "^0.7.6",

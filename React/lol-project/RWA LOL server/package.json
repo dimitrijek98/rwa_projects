@@ -12,7 +12,7 @@
     "axios": "^0.18.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "image-downloader": "^3.4.2",
     "mysql2": "^1.6.5",
     "nodemon": "^1.18.10",
